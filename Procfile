@@ -1,0 +1,1 @@
+web: java -jar target/starwars-integration-0.0.1-SNAPSHOT.jar
