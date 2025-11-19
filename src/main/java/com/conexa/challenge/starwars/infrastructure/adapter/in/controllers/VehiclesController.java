@@ -28,7 +28,8 @@ public class VehiclesController {
     @Operation(
             summary = "Get paginated list of vehicles",
             description = "Retrieves a paginated list of Star Wars vehicles from SWAPI. "
-                    + "<br>Supports pagination via query parameters 'page' and 'size'.",
+                    + "<br>Supports pagination via query parameters 'page' and 'size'."
+                    + "<br>Accessible for USER and ADMIN users.",
             tags = {"Vehicles"}
     )
     @ApiResponses({
@@ -73,7 +74,8 @@ public class VehiclesController {
 
     @Operation(
             summary = "Get vehicle by ID",
-            description = "Retrieves a vehicle",
+            description = "Retrieves a vehicle"
+                    + "<br>Accessible for USER and ADMIN users.",
             tags = {"Vehicles"}
     )
     @ApiResponses({

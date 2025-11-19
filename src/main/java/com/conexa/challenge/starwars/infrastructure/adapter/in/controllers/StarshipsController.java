@@ -28,7 +28,8 @@ public class StarshipsController {
     @Operation(
             summary = "Get paginated list of starships",
             description = "Retrieves a paginated list of Star Wars starships from SWAPI. "
-                    + "<br>Supports pagination via query parameters 'page' and 'size'.",
+                    + "<br>Supports pagination via query parameters 'page' and 'size'."
+                    + "<br>Accessible for ADMIN users only.",
             tags = {"Starship"}
     )
     @ApiResponses({
@@ -46,8 +47,13 @@ public class StarshipsController {
                     content = @Content(schema = @Schema(hidden = true))
             ),
             @ApiResponse(
+                    responseCode = "403",
+                    description = "You don't have privileges for this section",
+                    content = @Content(schema = @Schema(hidden = true))
+            ),
+            @ApiResponse(
                     responseCode = "404",
-                    description = "No people found",
+                    description = "No starship found",
                     content = @Content(schema = @Schema(hidden = true))
             ),
             @ApiResponse(
@@ -73,7 +79,8 @@ public class StarshipsController {
 
     @Operation(
             summary = "Get paginated list of starships",
-            description = "Retrieves starships.",
+            description = "Retrieves starships."
+                    + "<br>Accessible for ADMIN users only.",
             tags = {"Starship"}
     )
     @ApiResponses({
@@ -88,6 +95,11 @@ public class StarshipsController {
             @ApiResponse(
                     responseCode = "400",
                     description = "Invalid pagination parameters",
+                    content = @Content(schema = @Schema(hidden = true))
+            ),
+            @ApiResponse(
+                    responseCode = "403",
+                    description = "You don't have privileges for this section",
                     content = @Content(schema = @Schema(hidden = true))
             ),
             @ApiResponse(

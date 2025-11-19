@@ -3,6 +3,7 @@ package com.conexa.challenge.starwars.infrastructure.config;
 
 import com.conexa.challenge.starwars.infrastructure.security.CustomUserDetailsService;
 import com.conexa.challenge.starwars.infrastructure.security.JwtAuthFilter;
+import com.conexa.challenge.starwars.infrastructure.security.RestAccessDeniedHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -34,13 +35,15 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http,
+                                           RestAccessDeniedHandler accessDeniedHandler) throws Exception {
         return http
                 .csrf(csrf -> csrf.disable())
+                .exceptionHandling(ex -> ex.accessDeniedHandler(accessDeniedHandler))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/login").permitAll()
                         .requestMatchers("/api/docs/**","/api/swagger-ui/**","/v3/api-docs/**","/swagger-ui/**", "/authenticate").permitAll()
-                        .requestMatchers("/starships").hasRole("ADMIN")
+                        .requestMatchers("/starships/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
 //                .authenticationProvider(authenticationProvider()) //agregado

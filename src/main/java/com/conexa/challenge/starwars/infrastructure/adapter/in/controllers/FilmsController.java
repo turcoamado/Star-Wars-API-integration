@@ -4,13 +4,11 @@ import com.conexa.challenge.starwars.application.port.in.FilmUseCase;
 import com.conexa.challenge.starwars.domain.model.Film;
 import com.conexa.challenge.starwars.infrastructure.adapter.in.dto.BasicResponse;
 import com.conexa.challenge.starwars.infrastructure.adapter.in.dto.FilmResponse;
-import com.conexa.challenge.starwars.infrastructure.adapter.in.dto.TokenResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,7 +25,8 @@ public class FilmsController {
     @Operation(
             summary = "Get paginated list of films",
             description = "Retrieves a paginated list of Star Wars films from SWAPI. "
-                    + "<br>Supports pagination via query parameters 'page' and 'size'.",
+                    + "<br>Supports pagination via query parameters 'page' and 'size'."
+                    + "<br>Accessible for USER and ADMIN users.",
             tags = {"Films"}
     )
     @ApiResponses({
@@ -72,7 +71,8 @@ public class FilmsController {
 
     @Operation(
             summary = "Get film by ID",
-            description = "Retrieves a film",
+            description = "Retrieves a film."
+                    + "<br>Accessible for USER and ADMIN users.",
             tags = {"Films"}
     )
     @ApiResponses({

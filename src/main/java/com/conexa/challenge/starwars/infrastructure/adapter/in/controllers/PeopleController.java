@@ -28,7 +28,8 @@ public class PeopleController {
     @Operation(
             summary = "Get paginated list of people",
             description = "Retrieves a paginated list of Star Wars people from SWAPI. "
-                    + "<br>Supports pagination via query parameters 'page' and 'size'.",
+                    + "<br>Supports pagination via query parameters 'page' and 'size'."
+                    + "<br>Accessible for USER and ADMIN users.",
             tags = {"People"}
     )
     @ApiResponses({
@@ -73,7 +74,8 @@ public class PeopleController {
 
     @Operation(
             summary = "Get character by ID",
-            description = "Retrieves a character",
+            description = "Retrieves a character"
+                    + "<br>Accessible for USER and ADMIN users.",
             tags = {"People"}
     )
     @ApiResponses({
